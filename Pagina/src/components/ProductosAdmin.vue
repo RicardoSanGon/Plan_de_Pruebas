@@ -75,37 +75,37 @@ const handleFileChange = () => {
 };
 
 const mostrarProductos = () => {
-  fetch("http://3.136.87.82/productos")
+  fetch("http://localhost/productos")
     .then((res) => res.json())
     .then((datos) => (productos.value = datos.data));
 };
 
 const mostrarProductosInactivos = () => {
-  fetch("http://3.136.87.82/productosInactivos")
+  fetch("http://localhost/productosInactivos")
     .then((res) => res.json())
     .then((datos) => (productosInactivos.value = datos.data));
 };
 
 const mostrarCategorias = () => {
-  fetch("http://3.136.87.82/categorias")
+  fetch("http://localhost/categorias")
     .then((res) => res.json())
     .then((datos) => (categorias.value = datos.data));
 };
 
 const mostrarColores = () => {
-  fetch("http://3.136.87.82/colores")
+  fetch("http://localhost/colores")
     .then((res) => res.json())
     .then((datos) => (colores.value = datos.data));
 };
 
 const mostrarTallasNumericas = () => {
-  fetch("http://3.136.87.82/tallasNum")
+  fetch("http://localhost/tallasNum")
     .then((res) => res.json())
     .then((datos) => (tallaNum.value = datos.data));
 };
 
 const mostrarTallasRopa = () => {
-  fetch("http://3.136.87.82/tallasRopa")
+  fetch("http://localhost/tallasRopa")
     .then((res) => res.json())
     .then((datos) => (tallaRopa.value = datos.data));
 };
@@ -148,7 +148,7 @@ const agregarNuevoArticulo = () => {
 };
 
 const activarProducto = (id) => {
-  fetch("http://3.136.87.82/habilitarProd/" + id, {
+  fetch("http://localhost/habilitarProd/" + id, {
     method: "POST",
   });
   setTimeout(() => {
@@ -170,7 +170,7 @@ const activarEliminar = () => {
 
 const eliminarProducto = () => {
   if (seleccionados.value[0] != undefined) {
-    fetch("http://3.136.87.82/inhabilitarProd", {
+    fetch("http://localhost/inhabilitarProd", {
       method: "POST",
       body: JSON.stringify(seleccionados.value),
     });
@@ -194,7 +194,7 @@ const agregarProducto = () => {
     reader.onload = () => {
       const base64String = reader.result.split(",")[1];
       nuevoProducto.value.imagen1 = "data:image/jpeg;base64," + base64String;
-      fetch("http://3.136.87.82/insertarProd", {
+      fetch("http://localhost/insertarProd", {
         method: "POST",
         body: JSON.stringify(nuevoProducto.value),
       });
@@ -207,7 +207,7 @@ const agregarProducto = () => {
   dialog.value = false;
   setTimeout(() => {
     mostrarProductos();
-    fetch("http://3.136.87.82/obtenerId", {
+    fetch("http://localhost/obtenerId", {
       method: "POST",
       body: JSON.stringify(producto.value),
     })
@@ -262,7 +262,7 @@ const patron = /[a-zA-Z]|[^\w\s]/;
 const agregarArticulo = () => {
   if (nuevoArticulo.value.cantidad != "" && !patron.test(nuevoArticulo.value.cantidad)){
     console.log(nuevoArticulo.value.cantidad)
-    fetch("http://3.136.87.82/insertarArticulo", {
+    fetch("http://localhost/insertarArticulo", {
     method: "POST",
     body: JSON.stringify(nuevoArticulo.value),
     });
